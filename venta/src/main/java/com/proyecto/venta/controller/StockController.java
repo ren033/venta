@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/Stock")
-public class StockController {
-    
+public class StockController
+{
+    @Autowired
+    private StockService stockService;
 }
