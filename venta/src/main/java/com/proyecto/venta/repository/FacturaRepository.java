@@ -8,6 +8,10 @@ import org.springframework.stereotype.Repository;
 import com.proyecto.venta.model.Factura;
 
 @Repository
-public interface FacturaRepository extends JpaRepository <Factura, Integer>{
+public interface FacturaRepository extends JpaRepository <Factura, Integer>
+{
     List<Factura> FindAll();
+
+    @SuppressWarnings({ "unchecked", "null" })
+    Factura save (Factura factura);
 }

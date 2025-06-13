@@ -8,6 +8,10 @@ import org.springframework.stereotype.Repository;
 import com.proyecto.venta.model.Stock;
 
 @Repository
-public interface StockRepository extends JpaRepository <Stock, Integer>{
+public interface StockRepository extends JpaRepository <Stock, Integer>
+{
     List<Stock> FindAll();
+
+    @SuppressWarnings({ "unchecked", "null" })
+    Stock save (Stock stock);
 }

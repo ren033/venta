@@ -8,6 +8,10 @@ import org.springframework.stereotype.Repository;
 import com.proyecto.venta.model.DetalleVenta;
 
 @Repository
-public interface DetalleVentaRepository extends JpaRepository <DetalleVenta, Integer>{
+public interface DetalleVentaRepository extends JpaRepository <DetalleVenta, Integer>
+{
     List<DetalleVenta> FindAll();
+
+    @SuppressWarnings({ "unchecked", "null" })
+    DetalleVenta save (DetalleVenta detalleVenta);
 }

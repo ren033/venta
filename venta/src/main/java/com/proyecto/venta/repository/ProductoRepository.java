@@ -8,7 +8,8 @@ import org.springframework.stereotype.Repository;
 import com.proyecto.venta.model.Producto;
 
 @Repository
-public interface ProductoRepository extends JpaRepository <Producto, Integer>{
+public interface ProductoRepository extends JpaRepository <Producto, Integer>
+{
     List<Producto> FindAll();
 
     @SuppressWarnings({ "unchecked", "null" })
