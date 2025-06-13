@@ -17,4 +17,8 @@ public class DetalleVentaService
     public List<DetalleVenta> listDetalleVentas() {
         return detalleVentaRepository.findAll();
     }
+
+    public DetalleVenta save(DetalleVenta detalleVenta){
+        return detalleVentaRepository.save(detalleVenta);
+    }
 }
