@@ -30,7 +30,7 @@ public class Stock
     @OneToMany()
     @JsonManagedReference
     @JoinColumn(referencedColumnName = "Producto")
-    private List<Producto> inventario;
+    private List<Producto> producto;
 
     @Column(name = "Cantidad", nullable = false)
     private int cantidad;

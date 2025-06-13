@@ -17,9 +17,6 @@ public class Cupon {
     @Column(unique=true)
     private int id;
 
-    @Column(name = "Cupon", nullable = false)
-    private String name;
-
     @Column(name = "Porcentaje Descuento", nullable = false)
     private int porcentaje;
 }
