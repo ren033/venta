@@ -23,8 +23,4 @@ public class Tienda {
 
     @Column(name = "Direccion", nullable = false)
     private String direccion;
-
-    @OneToMany
-    @JoinColumn(referencedColumnName = "Id")
-    private Stock stock;
 }
