@@ -14,4 +14,6 @@ public interface DetalleVentaRepository extends JpaRepository <DetalleVenta, Int
 
     @SuppressWarnings({ "unchecked", "null" })
     DetalleVenta save (DetalleVenta detalleVenta);
+
+    DetalleVenta getReferenceById(int id);
 }

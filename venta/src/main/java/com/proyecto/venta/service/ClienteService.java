@@ -21,4 +21,12 @@ public class ClienteService
     public Cliente save(Cliente cliente){
         return clienteRepository.save(cliente);
     }
+
+    public Cliente findById(int id){
+        return clienteRepository.getReferenceById(id);
+    }
+
+    public Cliente deleteById(int id){
+        return clienteRepository.getReferenceById(id);
+    }
 }

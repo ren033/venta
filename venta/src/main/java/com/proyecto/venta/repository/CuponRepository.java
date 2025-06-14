@@ -14,4 +14,6 @@ public interface CuponRepository extends JpaRepository <Cupon, Integer>
 
     @SuppressWarnings({ "unchecked", "null" })
     Cupon save (Cupon cupon);
+
+    Cupon getReferenceById(int id);
 }

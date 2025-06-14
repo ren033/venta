@@ -21,4 +21,12 @@ public class TiendaService
     public Tienda save(Tienda tienda){
         return tiendaRepository.save(tienda);
     }
+
+    public Tienda findById(int id){
+        return tiendaRepository.getReferenceById(id);
+    }
+
+    public Tienda deleteById(int id){
+        return tiendaRepository.getReferenceById(id);
+    }
 }

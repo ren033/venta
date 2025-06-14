@@ -21,4 +21,12 @@ public class DetalleVentaService
     public DetalleVenta save(DetalleVenta detalleVenta){
         return detalleVentaRepository.save(detalleVenta);
     }
+
+    public DetalleVenta findById(int id){
+        return detalleVentaRepository.getReferenceById(id);
+    }
+
+    public DetalleVenta deleteById(int id){
+        return detalleVentaRepository.getReferenceById(id);
+    }
 }

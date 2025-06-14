@@ -21,4 +21,12 @@ public class StockService
     public Stock save(Stock stock){
         return stockRepository.save(stock);
     }
+
+    public Stock findById(int id){
+        return stockRepository.getReferenceById(id);
+    }
+
+    public Stock deleteById(int id){
+        return stockRepository.getReferenceById(id);
+    }
 }

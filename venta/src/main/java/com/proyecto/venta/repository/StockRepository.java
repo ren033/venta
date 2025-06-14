@@ -14,4 +14,6 @@ public interface StockRepository extends JpaRepository <Stock, Integer>
 
     @SuppressWarnings({ "unchecked", "null" })
     Stock save (Stock stock);
+
+    Stock getReferenceById(int id);
 }

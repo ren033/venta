@@ -21,4 +21,12 @@ public class CuponService
     public Cupon save(Cupon cupon){
         return cuponRepository.save(cupon);
     }
+
+    public Cupon findById(int id){
+        return cuponRepository.getReferenceById(id);
+    }
+
+    public Cupon deleteById(int id){
+        return cuponRepository.getReferenceById(id);
+    }
 }

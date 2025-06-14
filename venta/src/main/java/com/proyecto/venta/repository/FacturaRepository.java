@@ -14,4 +14,6 @@ public interface FacturaRepository extends JpaRepository <Factura, Integer>
 
     @SuppressWarnings({ "unchecked", "null" })
     Factura save (Factura factura);
+
+    Factura getReferenceById(int id);
 }
