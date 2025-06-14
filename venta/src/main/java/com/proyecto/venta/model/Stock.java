@@ -37,5 +37,4 @@ public class Stock
 
     @Column(name = "Disponibilidad", nullable = false)
     private boolean disponibilidad;
-
 }
