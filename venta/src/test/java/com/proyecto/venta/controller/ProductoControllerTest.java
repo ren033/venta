@@ -12,10 +12,10 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.Arrays;
-import java.util.Optional;
+//import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.eq;
+//import static org.mockito.ArgumentMatchers.eq;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -41,7 +41,23 @@ class MascotaControllerTest {
 
         mockMvc.perform(get("/api/producto"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].nombre").value(""))
-                .andExpect(jsonPath("$[1].tipo").value(""));
+                .andExpect(jsonPath("$[0].nombre").value("Audifonos"))
+                .andExpect(jsonPath("$[1].nombre").value("Cargador"));
+    }
+
+    @Test
+    void testCrearMascota() throws Exception {
+        Producto producto = new Producto();
+        Producto productoSaved = new Producto(1, "Audifonos", 4500);
+
+        Mockito.when(productoService.save(any(Producto.class)))
+                .thenReturn(productoSaved);
+
+        mockMvc.perform(post("/api/producto")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(producto)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(1))
+                .andExpect(jsonPath("$.nombre").value("Audifonos"));
     }
 }
