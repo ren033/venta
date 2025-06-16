@@ -20,7 +20,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(ProductoController.class)
-class MascotaControllerTest {
+class ProductoControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -32,7 +32,7 @@ class MascotaControllerTest {
     private ObjectMapper objectMapper;
 
     @Test
-    void testObtenerTodos() throws Exception {
+    void testObtenerProductos() throws Exception {
         Producto p1 = new Producto(1, "Audifonos", 4500);
         Producto p2 = new Producto(2, "Cargador", 2200);
         Producto p3 = new Producto(3, "Celular", 7000);
