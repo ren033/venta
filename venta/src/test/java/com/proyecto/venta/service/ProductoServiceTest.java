@@ -29,7 +29,7 @@ class ProductoServiceTest {
     }
 
     @Test
-    void testGuardarProducto() {
+    void testSaveProducto() {
         Producto producto = new Producto();
         Producto productoSaved = new Producto(1, "Audifonos", 4500);
         

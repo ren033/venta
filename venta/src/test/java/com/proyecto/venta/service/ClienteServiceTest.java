@@ -25,7 +25,7 @@ public class ClienteServiceTest {
     }
 
     @Test
-    void testGuardarCliente() {
+    void testSaveCliente() {
         Cliente cliente = new Cliente();
         Cliente clienteSaved = new Cliente();
         

@@ -55,7 +55,7 @@ public class ProductoController
         productoService.deleteById(id);
     }
 
-        @PutMapping("id")
+    @PutMapping("id")
     public ResponseEntity<Producto> updateProducto(@RequestBody Producto producto, @PathVariable int id)
     {
         List<Producto> updateProducto = productoService.listProductos();
