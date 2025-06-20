@@ -28,6 +28,23 @@ public class FacturaController
         }
     }
 
+    @GetMapping("/id")
+    public ResponseEntity<Factura> getById(@PathVariable int id){
+        return new ResponseEntity<Factura>(facturaService.findById(id), HttpStatus.OK);
+    }
+
+    @PostMapping
+    public ResponseEntity <Factura> postFactura(@RequestBody Factura factura)
+    {
+        Factura search = facturaService.findById(factura.getId());
+        if (search == null) {
+            return new ResponseEntity<>(facturaService.save(factura), HttpStatus.CREATED);
+        }
+        else{
+            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+        }
+    }
+
     @DeleteMapping("/id")
     public void deleteFactura(@PathVariable int id){
         facturaService.deleteById(id);
