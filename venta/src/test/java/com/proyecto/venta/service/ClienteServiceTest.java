@@ -1,6 +1,7 @@
 package com.proyecto.venta.service;
 
-import static org.assertj.core.api.Assertions.*;
+//import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -23,7 +24,7 @@ public class ClienteServiceTest {
     void setUp() {
         MockitoAnnotations.openMocks(this);
     }
-
+/*
     @Test
     void testSaveCliente() {
         Cliente cliente = new Cliente();
@@ -39,6 +40,20 @@ public class ClienteServiceTest {
         assertThat(resultado.getCorreo()).isEqualTo("");
         assertThat(resultado.getDireccion()).isEqualTo("Calle 23");
         verify(clienteRepository).save(cliente);
+    }
+*/
+
+    @Test
+    public void testSaveCliente() {
+        Cliente cliente = new Cliente(1, "pass", "usercarlos",
+            "Carlos","carlos@gmail.com", "Calle 23", true);
+
+        when(clienteRepository.save(cliente)).thenReturn(cliente);
+        Cliente saved = clienteService.save(cliente);
+
+        assertNotNull(saved);
+        assertEquals(1, saved.getId());
+        assertEquals("Carlos", saved.getNombre());
     }
 
     @Test
