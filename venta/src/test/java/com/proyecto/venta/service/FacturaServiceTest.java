@@ -26,9 +26,9 @@ class FacturaServiceTest {
     }
 
     @Test
-    void testGuardarCliente() {
+    void testSaveFactura() {
         Factura factura = new Factura();
-        Factura facturaSaved = new Factura(1, 5429, 1, "17-06-2025");
+        Factura facturaSaved = new Factura();
         
         when(facturaRepository.save(factura)).thenReturn(facturaSaved);
 
@@ -38,5 +38,14 @@ class FacturaServiceTest {
         assertThat(resultado.getCupon()).isEqualTo(1);
         assertThat(resultado.getDate()).isEqualTo("17-06-2025");
         verify(facturaRepository).save(factura);
+    }
+
+    @Test
+    public void testDeleteById() {
+        Integer id = 1;
+        doNothing().when(facturaRepository).deleteById(id);
+
+        facturaService.deleteById(id);
+        verify(facturaRepository, times(1)).deleteById(id);
     }
 }

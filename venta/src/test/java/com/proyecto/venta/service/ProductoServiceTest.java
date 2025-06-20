@@ -54,4 +54,13 @@ class ProductoServiceTest {
         assertThat(resultado).hasSize(3).contains(p1, p2, p3);
         verify(productoRepository).findAll();
     }
+
+    @Test
+    public void testDeleteById() {
+        Integer id = 1;
+        doNothing().when(productoRepository).deleteById(id);
+
+        productoService.deleteById(id);
+        verify(productoRepository, times(1)).deleteById(id);
+    }
 }

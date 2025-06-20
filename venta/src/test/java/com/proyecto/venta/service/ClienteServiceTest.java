@@ -37,7 +37,16 @@ public class ClienteServiceTest {
         assertThat(resultado.getUsername()).isEqualTo("");
         assertThat(resultado.getNombre()).isEqualTo("");
         assertThat(resultado.getCorreo()).isEqualTo("");
-        assertThat(resultado.getDireccion()).isEqualTo("");
+        assertThat(resultado.getDireccion()).isEqualTo("Calle 23");
         verify(clienteRepository).save(cliente);
+    }
+
+    @Test
+    public void testDeleteById() {
+        Integer id = 1;
+        doNothing().when(clienteRepository).deleteById(id);
+
+        clienteService.deleteById(id);
+        verify(clienteRepository, times(1)).deleteById(id);
     }
 }
