@@ -48,7 +48,5 @@ public class FacturaController
     @DeleteMapping("/id")
     public void deleteFactura(@PathVariable int id){
         facturaService.deleteById(id);
-    }
-
-    
+    }  
 }
