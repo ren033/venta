@@ -12,10 +12,14 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 
 import com.proyecto.venta.model.Producto;
 import com.proyecto.venta.repository.ProductoRepository;
 
+@SpringBootTest
+@ActiveProfiles("test")
 class ProductoServiceTest {
     @Mock
     private ProductoRepository productoRepository;
