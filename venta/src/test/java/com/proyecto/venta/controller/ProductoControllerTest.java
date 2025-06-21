@@ -3,6 +3,8 @@ package com.proyecto.venta.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.proyecto.venta.model.Producto;
 import com.proyecto.venta.service.ProductoService;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +33,27 @@ class ProductoControllerTest {
     @Autowired
     private ObjectMapper objectMapper;
 
+    private Producto producto;
+    @BeforeEach
+    void setUp() {
+        producto = new Producto();
+        producto.setId(1);
+        producto.setNombre("Audifonos");
+        producto.setPrecio(4500);
+
+        producto = new Producto();
+        producto.setId(2);
+        producto.setNombre("Cargador");
+        producto.setPrecio(2200);
+
+        producto = new Producto();
+        producto.setId(3);
+        producto.setNombre("Celular");
+        producto.setPrecio(7000);
+    }
+
     @Test
-    void testObtenerProductos() throws Exception {
+    void testListProductos() throws Exception {
         Producto p1 = new Producto(1, "Audifonos", 4500);
         Producto p2 = new Producto(2, "Cargador", 2200);
         Producto p3 = new Producto(3, "Celular", 7000);
@@ -46,7 +67,7 @@ class ProductoControllerTest {
     }
 
     @Test
-    void testCrearMascota() throws Exception {
+    void testSaveProducto() throws Exception {
         Producto producto = new Producto();
         Producto productoSaved = new Producto(1, "Audifonos", 4500);
 

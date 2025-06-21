@@ -49,4 +49,6 @@ public class FacturaController
     public void deleteFactura(@PathVariable int id){
         facturaService.deleteById(id);
     }
+
+    
 }

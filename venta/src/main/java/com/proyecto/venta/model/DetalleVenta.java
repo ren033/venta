@@ -1,7 +1,5 @@
 package com.proyecto.venta.model;
 
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.*;
@@ -23,7 +21,7 @@ public class DetalleVenta {
     @OneToMany()
     @JsonManagedReference
     @JoinColumn(referencedColumnName = "Producto")
-    private List<Producto> detalleVenta;
+    private String nombreProductoVenta;
 
     @JsonManagedReference
     @JoinColumn(referencedColumnName = "Precio")
