@@ -23,7 +23,7 @@ public class Factura {
 
     @OneToMany
     @JoinColumn(referencedColumnName = "Cupon")
-    private Cupon cupon;
+    private int cupon;
 
     @Column(name = "Fecha", nullable = false)
     private String date;
