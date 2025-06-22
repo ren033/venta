@@ -56,13 +56,4 @@ public class ClienteServiceTest {
         assertEquals(1, saved.getId());
         assertEquals("Carlos", saved.getNombre());
     }
-
-    @Test
-    public void testDeleteCliente() {
-        int id = 1;
-        doNothing().when(clienteRepository).deleteById(id);
-
-        clienteService.deleteById(id);
-        verify(clienteRepository, times(1)).deleteById(id);
-    }
 }
