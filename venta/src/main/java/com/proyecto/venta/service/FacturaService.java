@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import com.proyecto.venta.model.Factura;
+import com.proyecto.venta.model.UsuarioDTO;
 import com.proyecto.venta.repository.FacturaRepository;
 
 @Service
@@ -13,6 +15,20 @@ public class FacturaService
 {
     @Autowired
     private FacturaRepository facturaRepository;
+
+    public Factura create(Factura resupply) {
+        RestTemplate restTemplate = new RestTemplate();
+        
+        String url = "http://localhost:8083/api/usuario/" + resupply.getIdCliente();
+        UsuarioDTO cliente = restTemplate.getForObject(url, UsuarioDTO.class);
+        
+        if (cliente == null) {
+            throw new RuntimeException("Cliente no encontrado con ID: " + resupply.getIdCliente());
+        }
+
+            resupply.setIdCliente(cliente.getId());
+            return facturaRepository.save(resupply);
+    }
 
     public List<Factura> listFacturas(){
         return facturaRepository.findAll();

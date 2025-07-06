@@ -16,4 +16,5 @@ public interface FacturaRepository extends JpaRepository <Factura, Integer>
     Factura save (Factura factura);
 
     Factura getReferenceById(int id);
+    List<Factura> findByClienteId(int idCliente);
 }
