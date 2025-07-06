@@ -20,9 +20,9 @@ public class StockController
     @GetMapping
     public ResponseEntity<List<Stock>> getAll()
     {
-        List<Stock> productos = stockService.listStock();
-        if (!productos.isEmpty()) {
-            return new ResponseEntity<>(productos, HttpStatus.OK);
+        List<Stock> stocks = stockService.listStock();
+        if (!stocks.isEmpty()) {
+            return new ResponseEntity<>(stocks, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -50,7 +50,7 @@ public class StockController
         stockService.deleteById(id);
     }
 
-    @PutMapping("id")
+    @PutMapping("/id")
     public ResponseEntity<Stock> updateStock(@RequestBody Stock stock, @PathVariable int id)
     {
         List<Stock> updateStock = stockService.listStock();

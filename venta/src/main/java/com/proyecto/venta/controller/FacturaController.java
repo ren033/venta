@@ -49,4 +49,15 @@ public class FacturaController
     public void deleteFactura(@PathVariable int id){
         facturaService.deleteById(id);
     }
+
+    @PutMapping("/id")
+    public ResponseEntity<Factura> updateFactura(@RequestBody Factura factura, @PathVariable int id)
+    {
+        List<Factura> updateFactura = facturaService.listFacturas();
+        if (!updateFactura.isEmpty())
+            return ResponseEntity.notFound().build();
+            factura.setId(id);
+            facturaService.save(factura);
+            return ResponseEntity.noContent().build();
+    }
 }

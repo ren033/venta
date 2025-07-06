@@ -23,12 +23,12 @@ public class Stock
 
     @ManyToOne
     @JoinColumn(referencedColumnName = "Tienda asociada")
-    private String tienda;
+    private String stockTienda;
 
     @OneToMany()
     @JsonManagedReference
     @JoinColumn(referencedColumnName = "Producto")
-    private String producto;
+    private String stockProducto;
 
     @Column(name = "Cantidad", nullable = false)
     private int cantidad;

@@ -18,6 +18,9 @@ public class Factura {
     @Column(unique=true)
     private int id;
 
+    @Column(nullable = false)
+    private String nombreCliente;
+
     @Column(name = "Total", nullable = false)
     private int total;
 

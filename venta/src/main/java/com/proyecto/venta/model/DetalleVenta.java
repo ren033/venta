@@ -21,12 +21,12 @@ public class DetalleVenta {
     @OneToMany()
     @JsonManagedReference
     @JoinColumn(referencedColumnName = "Producto")
-    private String nombreProductoVenta;
+    private String nomProductoVenta;
 
     @JsonManagedReference
     @JoinColumn(referencedColumnName = "Precio")
     private int precioProductoVenta;
 
     @Column(name = "Cantidad", nullable = false)
-    private int cantidadProductoVenta;
+    private int cantProductoVenta;
 }
