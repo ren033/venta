@@ -14,7 +14,15 @@ import com.proyecto.venta.repository.FacturaRepository;
 public class FacturaService
 {
     @Autowired
+    private RestTemplate restTemplate;
+
+    @Autowired
     private FacturaRepository facturaRepository;
+
+    public UsuarioDTO getUsuarioById(Integer id) {
+        String url = "http://localhost:8083/api/usuario/" + id;
+        return restTemplate.getForObject(url, UsuarioDTO.class);
+    }
 
     public Factura create(Factura resupply) {
         RestTemplate restTemplate = new RestTemplate();
