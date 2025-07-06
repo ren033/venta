@@ -1,16 +1,21 @@
 package com.proyecto.venta.service;
 
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
+
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
+import org.mockito.MockitoAnnotations;
+import org.springframework.web.client.RestTemplate;
 
 import com.proyecto.venta.model.Producto;
 import com.proyecto.venta.repository.ProductoRepository;
 
-@SpringBootTest
-@ActiveProfiles("test")
 class ProductoServiceTest {
     @Mock
     private ProductoRepository productoRepository;
@@ -18,21 +23,42 @@ class ProductoServiceTest {
     @InjectMocks
     private ProductoService productoService;
 
+    @Mock
+    private RestTemplate restTemplate;
+
     @BeforeEach
     void setUp() {
-        Producto p1 = new Producto();
-        p1.setId(1);
-        p1.setNombre("Audifonos");
-        p1.setPrecio(32000);
-
-        Producto p2 = new Producto();
-        p2.setId(2);
-        p2.setNombre("Cargado");
-        p2.setPrecio(7000);
-
-        Producto p3 = new Producto();
-        p3.setId(3);
-        p3.setNombre("Celular");
-        p3.setPrecio(440000);
+        MockitoAnnotations.openMocks(this);
     }
+
+    @Test
+    public void testSaveProducto(){
+        Producto prod = new Producto();
+        prod.setId(1);
+        prod.setNombre("Audifonos");
+        prod.setPrecio(32000);
+        when(productoRepository.save(prod)).thenReturn(prod);
+
+        Producto saved = productoService.save(prod);
+        assertNotNull(saved);
+        assertEquals(1, saved.getId());
+    }
+
+    @Test
+    void testListProductos() {
+        Producto prod = new Producto();
+        prod.setId(1);
+        Producto prod2 = new Producto();
+        prod2.setId(2);
+
+        List<Producto> mockProductos = Arrays.asList(prod, prod2);
+        when(productoRepository.findAll()).thenReturn(mockProductos);
+
+        List<Producto> response = productoService.listProductos();
+
+        assertNotNull(response);
+        assertEquals(2, response.size());
+        verify(productoRepository, times(1)).findAll();
+    }
+
 }
