@@ -1,7 +1,5 @@
 package com.proyecto.venta.service;
 
-import org.mockito.Mock;
-
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -11,6 +9,7 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.web.client.RestTemplate;
 
@@ -71,4 +70,30 @@ class FacturaServiceTest {
         verify(facturaRepository).findAll();
     }
 
+    @Test
+    void testFindByIdFactura() {
+        Factura fact = new Factura();
+        fact.setId(1);
+        when(facturaRepository.getReferenceById(1)).thenReturn(fact);
+
+        Factura response = facturaService.findById(1);
+
+        assertEquals(fact, response);
+        verify(facturaRepository, times(1)).getReferenceById(1);
+    }
+
+    @Test
+    void testDeleteFactura() {
+        Factura fact = new Factura();
+        fact.setId(1);
+
+        when(facturaRepository.getReferenceById(1)).thenReturn(fact);
+        doNothing().when(facturaRepository).delete(fact);
+
+        Factura response = facturaService.deleteById(1);
+
+        assertEquals(fact, response);
+        verify(facturaRepository, times(1)).getReferenceById(1);
+        verify(facturaRepository, times(1)).delete(fact);
+    }
 }

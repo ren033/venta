@@ -26,7 +26,13 @@ public class DetalleVentaService
         return detalleVentaRepository.getReferenceById(id);
     }
 
-    public DetalleVenta deleteById(int id){
-        return detalleVentaRepository.getReferenceById(id);
+    public DetalleVenta deleteById(int id) {
+    DetalleVenta detalleVenta = detalleVentaRepository.getReferenceById(id);
+    detalleVentaRepository.delete(detalleVenta);
+    return detalleVenta;
+    }
+
+    public DetalleVenta update(DetalleVenta detalleVenta){
+        return detalleVentaRepository.save(detalleVenta);
     }
 }

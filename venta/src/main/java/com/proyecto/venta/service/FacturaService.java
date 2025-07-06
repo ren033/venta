@@ -26,7 +26,13 @@ public class FacturaService
         return facturaRepository.getReferenceById(id);
     }
 
-    public Factura deleteById(int id){
-        return facturaRepository.getReferenceById(id);
+    public Factura deleteById(int id) {
+    Factura factura = facturaRepository.getReferenceById(id);
+    facturaRepository.delete(factura);
+    return factura;
+    }
+
+    public Factura update(Factura factura){
+        return facturaRepository.save(factura);
     }
 }

@@ -1,5 +1,9 @@
 package com.proyecto.venta.model;
 
+import java.time.LocalDate;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.persistence.*;
 
 import lombok.AllArgsConstructor;
@@ -18,8 +22,12 @@ public class Factura {
     @Column(unique=true)
     private int id;
 
-    @Column(nullable = false)
-    private String nombreCliente;
+    @Column(name = "Usuario",nullable = false)
+    private String nombreUsuario;
+
+    @OneToMany
+    @JoinColumn(referencedColumnName = "Detalle")
+    private int detalle;
 
     @Column(name = "Total", nullable = false)
     private int total;
@@ -28,6 +36,7 @@ public class Factura {
     @JoinColumn(referencedColumnName = "Cupon")
     private int cupon;
 
+    @JsonFormat(pattern = "dd-MM-yyyy")
     @Column(name = "Fecha", nullable = false)
-    private String date;
+    private LocalDate fecha;
 }
