@@ -22,8 +22,8 @@ public class Factura {
     @Column(unique=true)
     private int id;
 
-    @Column(name = "Usuario",nullable = false)
-    private String nombreUsuario;
+    @Column(name = "Cliente",nullable = false)
+    private int idCliente;
 
     @OneToMany
     @JoinColumn(referencedColumnName = "Detalle")
@@ -39,4 +39,5 @@ public class Factura {
     @JsonFormat(pattern = "dd-MM-yyyy")
     @Column(name = "Fecha", nullable = false)
     private LocalDate fecha;
+
 }

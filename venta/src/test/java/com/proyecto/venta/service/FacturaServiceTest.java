@@ -16,6 +16,8 @@ import org.springframework.web.client.RestTemplate;
 import com.proyecto.venta.model.Factura;
 import com.proyecto.venta.repository.FacturaRepository;
 
+import jakarta.persistence.EntityNotFoundException;
+
 class FacturaServiceTest {
     @Mock
     private FacturaRepository facturaRepository;
@@ -83,6 +85,19 @@ class FacturaServiceTest {
     }
 
     @Test
+    public void testFindByIdFactura_NotFound() {
+        int id_notFound = 99;
+        when(facturaRepository.getReferenceById(id_notFound)).thenThrow(new EntityNotFoundException("Factura no encontrada"));
+
+        EntityNotFoundException thrown = assertThrows(EntityNotFoundException.class, () -> {
+            facturaService.findById(id_notFound);
+        });
+
+        assertEquals("Factura no encontrada", thrown.getMessage());
+        verify(facturaRepository).getReferenceById(id_notFound);
+    }
+
+    @Test
     void testDeleteFactura() {
         Factura fact = new Factura();
         fact.setId(1);
@@ -95,5 +110,19 @@ class FacturaServiceTest {
         assertEquals(fact, response);
         verify(facturaRepository, times(1)).getReferenceById(1);
         verify(facturaRepository, times(1)).delete(fact);
+    }
+
+    @Test
+    void testUpdateFcatura() {
+        Factura fact = new Factura();
+        fact.setId(1);
+
+        when(facturaRepository.save(fact)).thenReturn(fact);
+
+        Factura response = facturaService.update(fact);
+
+        assertNotNull(response);
+        assertEquals(fact, response);
+        verify(facturaRepository, times(1)).save(fact);
     }
 }
