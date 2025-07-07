@@ -87,14 +87,14 @@ class FacturaServiceTest {
     @Test
     public void testFindByIdFactura_NotFound() {
         int id_notFound = 99;
-        when(facturaRepository.getReferenceById(id_notFound)).thenThrow(new EntityNotFoundException("Factura no encontrada"));
+        when(facturaRepository.findById(id_notFound)).thenThrow(new EntityNotFoundException("Factura no encontrada"));
 
         EntityNotFoundException thrown = assertThrows(EntityNotFoundException.class, () -> {
             facturaService.findById(id_notFound);
         });
 
         assertEquals("Factura no encontrada", thrown.getMessage());
-        verify(facturaRepository).getReferenceById(id_notFound);
+        verify(facturaRepository).findById(id_notFound);
     }
 
     @Test

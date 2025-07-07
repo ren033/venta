@@ -85,14 +85,14 @@ class DetalleVentaServiceTest{
     @Test
     public void testFindByIdDetalle_NotFound() {
         int id_notFound = 99;
-        when(detalleVentaRepository.getReferenceById(id_notFound)).thenThrow(new EntityNotFoundException("Venta no encontrada"));
+        when(detalleVentaRepository.findById(id_notFound)).thenThrow(new EntityNotFoundException("Venta no encontrada"));
 
         EntityNotFoundException thrown = assertThrows(EntityNotFoundException.class, () -> {
             detalleVentaService.findById(id_notFound);
         });
 
         assertEquals("Venta no encontrada", thrown.getMessage());
-        verify(detalleVentaRepository).getReferenceById(id_notFound);
+        verify(detalleVentaRepository).findById(id_notFound);
     }
 
     @Test
